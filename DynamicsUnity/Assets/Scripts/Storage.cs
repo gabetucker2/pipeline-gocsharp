@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class Storage : MonoBehaviour {
 
@@ -12,8 +13,14 @@ public class Storage : MonoBehaviour {
     // initialize variables
     public bool runScript = false;
     public Transform peopleFolder, stimuliFolder;
-    public string csvDirectory, distancesFileName, actionsFileName, instructionsFileName;
+    public string distancesFileName, actionsFileName, instructionsFileName;
     public List<Action> actions = new List<Action>();
+    
+    private string csvDirectory;
+
+    private void Start() {
+        csvDirectory = Path.Combine(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName, "Translator");
+    }
 
     public string GetCSVPath(string fileName) {
         return csvDirectory + "\\" + fileName + ".csv";

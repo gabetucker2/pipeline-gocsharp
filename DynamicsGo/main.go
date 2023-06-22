@@ -3,16 +3,19 @@ package main
 import (
 	"fmt"
 	"os"
-	"time"
+	"path/filepath"
 
 	. "github.com/gabetucker2/gostack" //lint:ignore ST1001, ignore warning
 )
 
 func main() {
 
-	inDistancesFile := "C:\\Users\\Gabe\\Desktop\\Desktop\\ProjectSaves\\DynamicsProject\\Translator\\distances.csv"
-	IOActionsFile := "C:\\Users\\Gabe\\Desktop\\Desktop\\ProjectSaves\\DynamicsProject\\Translator\\actions.csv"
-	outFile := "C:\\Users\\Gabe\\Desktop\\Desktop\\ProjectSaves\\DynamicsProject\\Translator\\instructions.csv"
+	wd, _ := os.Getwd()
+	translatorDir := filepath.Dir(wd) + "\\Translator\\"
+
+	inDistancesFile := translatorDir + "distances.csv"
+	IOActionsFile := translatorDir + "actions.csv"
+	outFile := translatorDir + "instructions.csv"
 	
 	fmt.Println("Unity => Go: Extracting Unity data to gostack")
 	unityDistancesStack := CSVToStackMatrix(inDistancesFile)
@@ -21,33 +24,21 @@ func main() {
 
 	// distances
 	peopleStack := unityDistancesStack.Get(FIND_First).Val.(*Stack).Remove(FIND_First) // guaranteed to have every person
-	peopleLocations := MakeStack(os.Args).Remove(FIND_First).Remove(FIND_First)
+	peopleLocations := MakeStack(os.Args).Remove(FIND_First)
 
 	MakeStackMatrix([]*Stack {
 		peopleStack,
 		peopleLocations,
 	}).ToCSV(outFile)
 
-	loopRoutine := func() {
-		for len(os.Args) > 1 && os.Args[1] == "y" {
+	// in
+	IOStack := CSVToStackMatrix(IOActionsFile)
 
-			// in
-			IOStack := CSVToStackMatrix(IOActionsFile)
+	if !(IOStack.Equals(MakeStack())) {
+		// IOStack.Print("Got action(s)")
 
-			if !(IOStack.Equals(MakeStack())) {
-				IOStack.Print("Got action(s)")
-
-				// out
-				MakeStack().ToCSV(IOActionsFile) // empty
-			}
-
-			// wait
-			time.Sleep(time.Millisecond * 5)
-
-		}
+		// out
+		MakeStack().ToCSV(IOActionsFile) // empty
 	}
-
-	// start/stop routine
-	loopRoutine()
 	
 }

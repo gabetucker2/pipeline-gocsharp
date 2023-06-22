@@ -53,7 +53,6 @@ public class Outputs : MonoBehaviour {
             csv = ""; // TODO: fix how if gostack doesn't read in time, it won't register action since csv will be replaced by other action
             // * column headers
             if(storage.actions.Count > 0) {
-                Debug.Log(storage.actions);
                 foreach(var action in storage.actions) {
                     Transform person = storage.peopleFolder.Find(action.person.name);
                     csv += person.name + ",";
