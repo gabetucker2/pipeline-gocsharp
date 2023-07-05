@@ -68,6 +68,15 @@ public class Outputs : MonoBehaviour {
                 File.WriteAllText(storage.GetCSVPath(storage.actionsFileName), csv);
             }
 
+            // ! OUTPUT STIMULI
+            csv = "";
+            for(int i = 0; i < storage.stimuliFolder.childCount; i++) {
+                Transform stimulus = storage.stimuliFolder.GetChild(i);
+                csv += stimulus.name + ",";
+            }
+
+            File.WriteAllText(storage.GetCSVPath(storage.stimuliFileName), csv);
+
         }
     }
 }

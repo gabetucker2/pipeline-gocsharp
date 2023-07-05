@@ -5,7 +5,8 @@ import (
 	"os"
 	"path/filepath"
 
-	. "github.com/gabetucker2/gostack" //lint:ignore ST1001, ignore warning
+	"github.com/gabetucker2/gogenerics" //lint:ignore ST1001, ignore warning
+	. "github.com/gabetucker2/gostack"  //lint:ignore ST1001, ignore warning
 )
 
 func main() {
@@ -16,10 +17,13 @@ func main() {
 	inDistancesFile := translatorDir + "distances.csv"
 	IOActionsFile := translatorDir + "actions.csv"
 	outFile := translatorDir + "instructions.csv"
+	stimuliFile := translatorDir + "stimuli.csv"
 	
 	fmt.Println("Unity => Go: Extracting Unity data to gostack")
 	unityDistancesStack := CSVToStackMatrix(inDistancesFile)
-
+	unityStimuliStack := CSVToStackMatrix(stimuliFile)
+	gogenerics.RemoveUnusedError(unityStimuliStack)
+	
 	fmt.Println("Go => Unity: Extracting gostack data to Unity")
 
 	// distances
