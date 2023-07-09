@@ -13,7 +13,7 @@ public class Storage : MonoBehaviour {
     // initialize variables
     public bool runScript = false;
     public Transform peopleFolder, stimuliFolder;
-    public string distancesFileName, actionsFileName, instructionsFileName, stimuliFileName;
+    public string distancesFileName, actionsFileName, instructionsFileName;
     public List<Action> actions = new List<Action>();
     
     private string csvDirectory;
