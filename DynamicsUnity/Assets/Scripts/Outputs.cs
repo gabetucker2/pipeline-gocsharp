@@ -50,10 +50,10 @@ public class Outputs : MonoBehaviour {
             File.WriteAllText(storage.GetCSVPath(storage.distancesFileName), csv);
 
             // ! OUTPUT ACITONS
-            csv = ""; // TODO: fix how if gostack doesn't read in time, it won't register action since csv will be replaced by other action
+            csv = "";
             // * column headers
             if(storage.actions.Count > 0) {
-                print("Updating actions");
+                // print("Updating actions");
                 foreach(var action in storage.actions) {
                     Transform person = storage.peopleFolder.Find(action.person.name);
                     csv += person.name + ",";
@@ -65,8 +65,11 @@ public class Outputs : MonoBehaviour {
                     csv += action.action + ",";
                 }
                 csv = csv.Substring(0, csv.Length-1); // remove the final extraneous comma
-                storage.actions.Clear();
                 File.WriteAllText(storage.GetCSVPath(storage.actionsFileName), csv);
+            } else {
+                // ensure Go has interpreted it
+                print("Actions clearing");
+                storage.actions.Clear();
             }
 
         }

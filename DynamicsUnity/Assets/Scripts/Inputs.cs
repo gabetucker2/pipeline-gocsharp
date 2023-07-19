@@ -13,7 +13,7 @@ public class Inputs : MonoBehaviour {
 
     private void Update() {
 
-        // initialize lists
+        // initialize instructions parse lists
         string thisFilePath = storage.GetCSVPath(storage.instructionsFileName);
         try {
             using (StreamReader reader = new StreamReader(thisFilePath)) // try/using because there is no way to guarantee that the reader won't read a file currently being accessed
@@ -66,8 +66,40 @@ public class Inputs : MonoBehaviour {
                     }
                 }
             }
-            
+        
         } catch {}
+        
+        // Set gostats data
+        thisFilePath = storage.GetCSVPath(storage.gostatsFileName);
+        try
+        {
+            using (StreamReader reader = new StreamReader(thisFilePath)) // try/using because there is no way to guarantee that the reader won't read a file currently being accessed
+            {
+                int i = 0;
+                while (!reader.EndOfStream)
+                {
+                    // changeLocation.Add(true);
+                    string line = reader.ReadLine();
+                    string[] values = line.Split(',');
+
+                    if (values.Length >= 2) // Ensure there are at least 2 values in the line
+                    {
+                        if (i == 1)
+                        {
+                            bool readAction;
+                            if (bool.TryParse(values[1], out readAction))
+                            {
+                                storage.readAction = readAction;
+                            }
+                        }
+                    }
+
+                    i++;
+                }
+                reader.Close();
+            }
+        }
+        catch {}
 
     }
     
