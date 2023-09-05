@@ -68,13 +68,13 @@ func startRoutine() {
      if firstRun {
 						
       // initialize instructions CSV
-							MakeStackMatrix([]*Stack {
-       peopleStack,
-       peopleLocations,
-       }).ToCSV(instructionsFile)
+		MakeStackMatrix([]*Stack {
+         peopleStack,
+         peopleLocations,
+      }).ToCSV(instructionsFile)
 
-							// initialize gostats CSV
-							MakeStackMatrix([]string {"readActionKey", "readActionVal"}, []string {"readAction", "False"}, []int {1, 2}).ToCSV(gostatsFile)
+		// initialize gostats CSV
+		MakeStackMatrix([]string {"readActionKey", "readActionVal"}, []string {"readAction", "False"}, []int {1, 2}).ToCSV(gostatsFile)
       }
      
      // * WRITE CONTINUOUSLY
@@ -87,14 +87,14 @@ func startRoutine() {
       for i := 0; i < len(people); i++ {
        fmt.Printf("%s arrived at %s\n", people[i].Val, locations[i].Val)
       }
-						CSVToStackMatrix(gostatsFile).Update(REPLACE_Val, "True", FIND_Key, "readActionVal").ToCSV(gostatsFile)
+		CSVToStackMatrix(gostatsFile).Update(REPLACE_Val, "True", FIND_Key, "readActionVal").ToCSV(gostatsFile)
       fmt.Println("SENT ACTIONS SIGNAL IN GOSTATS")
      }
-						// TODO: optimize this conditional for performance
-						gostatsStack := CSVToStackMatrix(gostatsFile)
-						if gostatsStack.Get(FIND_Key, "readActionVal").Val == "True" {
-							gostatsStack.Update(REPLACE_Val, "False", FIND_Key, "readActionVal").ToCSV(gostatsFile)
-						} 
+      // TODO: optimize this conditional for performance
+      // gostatsStack := CSVToStackMatrix(gostatsFile)
+      // if gostatsStack.Get(FIND_Key, "readActionVal").Val == "True" {
+      // 	gostatsStack.Update(REPLACE_Val, "False", FIND_Key, "readActionVal").ToCSV(gostatsFile)
+      // }
       
       // * MISC
       gogenerics.RemoveUnusedError(stimuliStack)

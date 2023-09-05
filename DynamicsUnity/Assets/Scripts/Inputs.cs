@@ -14,9 +14,9 @@ public class Inputs : MonoBehaviour {
     private void Update() {
 
         // initialize instructions parse lists
-        string thisFilePath = storage.GetCSVPath(storage.instructionsFileName);
+        string instructionsFilePath = storage.GetCSVPath(storage.instructionsFileName);
         try {
-            using (StreamReader reader = new StreamReader(thisFilePath)) // try/using because there is no way to guarantee that the reader won't read a file currently being accessed
+            using (StreamReader reader = new StreamReader(instructionsFilePath)) // try/using because there is no way to guarantee that the reader won't read a file currently being accessed
             {
                 List<bool> changeLocation = new List<bool>();
                 List<string> people = new List<string>();
@@ -68,38 +68,26 @@ public class Inputs : MonoBehaviour {
             }
         
         } catch {}
-        
-        // Set gostats data
-        thisFilePath = storage.GetCSVPath(storage.gostatsFileName);
-        try
-        {
-            using (StreamReader reader = new StreamReader(thisFilePath)) // try/using because there is no way to guarantee that the reader won't read a file currently being accessed
+
+        // parse gostats boolean value
+        string gostatsFilePath = storage.GetCSVPath(storage.gostatsFileName);
+        try {
+            using (StreamReader reader = new StreamReader(gostatsFilePath)) 
             {
                 int i = 0;
-                while (!reader.EndOfStream)
-                {
-                    // changeLocation.Add(true);
+
+                while(!reader.EndOfStream) {
                     string line = reader.ReadLine();
                     string[] values = line.Split(',');
 
-                    if (values.Length >= 2) // Ensure there are at least 2 values in the line
-                    {
-                        if (i == 1)
-                        {
-                            bool readAction;
-                            if (bool.TryParse(values[1], out readAction))
-                            {
-                                storage.readAction = readAction;
-                            }
-                        }
+                    if(i == 1) { // Assuming only two lines, skip the first one which is the header
+                        storage.goReadActions = bool.Parse(values[0]);
                     }
-
                     i++;
                 }
                 reader.Close();
             }
-        }
-        catch {}
+        } catch {}
 
     }
     

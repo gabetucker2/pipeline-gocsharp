@@ -15,6 +15,7 @@ public class Storage : MonoBehaviour {
     public Transform peopleFolder, stimuliFolder;
     public string distancesFileName, actionsFileName, instructionsFileName, gostatsFileName;
     public List<Action> actions = new List<Action>();
+    public bool goReadActions = false;
 
     [HideInInspector] public bool readAction = false;
     

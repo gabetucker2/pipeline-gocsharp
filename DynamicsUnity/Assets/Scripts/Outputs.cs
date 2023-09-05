@@ -8,6 +8,11 @@ public class Outputs : MonoBehaviour {
     private Storage storage;
     private void Start() {
         storage = gameObject.GetComponent<Storage>();
+
+        // initialize actions as empty so that Go doesn't think it's arrived preemptively
+        File.WriteAllText(storage.GetCSVPath(storage.actionsFileName), "");
+        File.WriteAllText(storage.GetCSVPath(storage.instructions), "");
+        File.WriteAllText(storage.GetCSVPath(storage.distances), "");
     }
 
     // make changes to csv string
@@ -52,7 +57,12 @@ public class Outputs : MonoBehaviour {
             // ! OUTPUT ACITONS
             csv = "";
             // * column headers
-            if(storage.actions.Count > 0) {
+            if(storage.goReadActions) {
+                // it is certain that Go has interpreted the actions, so clear actions
+                print("Actions clearing");
+                storage.actions.Clear();
+                File.WriteAllText(storage.GetCSVPath(storage.actionsFileName), csv);
+            } else {
                 // print("Updating actions");
                 foreach(var action in storage.actions) {
                     Transform person = storage.peopleFolder.Find(action.person.name);
@@ -66,10 +76,6 @@ public class Outputs : MonoBehaviour {
                 }
                 csv = csv.Substring(0, csv.Length-1); // remove the final extraneous comma
                 File.WriteAllText(storage.GetCSVPath(storage.actionsFileName), csv);
-            } else {
-                // ensure Go has interpreted it
-                print("Actions clearing");
-                storage.actions.Clear();
             }
 
         }

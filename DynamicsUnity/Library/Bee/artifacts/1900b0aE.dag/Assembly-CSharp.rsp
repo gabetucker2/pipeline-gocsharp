@@ -330,6 +330,7 @@
 "Assets/Scripts/Inputs.cs"
 "Assets/Scripts/Outputs.cs"
 "Assets/Scripts/Person.cs"
+"Assets/Scripts/PersonDemo.cs"
 "Assets/Scripts/Storage.cs"
 -langversion:9.0
 
