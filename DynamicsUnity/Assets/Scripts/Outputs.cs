@@ -18,7 +18,7 @@ public class Outputs : MonoBehaviour {
     // make changes to csv string
     private void Update() {
         if(storage.runScript) {
-
+                                             
             // ! OUTPUT DISTANCES
             // initialize csv's (0, 0) element
             string csv = "\"\",";
