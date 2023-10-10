@@ -736,6 +736,46 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 021b974a53f8a484bbdafb35e5fb08bc, type: 2}
+    - target: {fileID: 1441416300842149675, guid: bc087c2bee22e7a468537a54d8cd05b7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.47211468
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441416300842149675, guid: bc087c2bee22e7a468537a54d8cd05b7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.49822676
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441416300842149675, guid: bc087c2bee22e7a468537a54d8cd05b7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5293913
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441416300842149675, guid: bc087c2bee22e7a468537a54d8cd05b7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4986208
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441416300842149675, guid: bc087c2bee22e7a468537a54d8cd05b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 96.249
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441416300842149675, guid: bc087c2bee22e7a468537a54d8cd05b7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.047
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441416300842149675, guid: bc087c2bee22e7a468537a54d8cd05b7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441416300842149675, guid: bc087c2bee22e7a468537a54d8cd05b7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.031
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441416300842149675, guid: bc087c2bee22e7a468537a54d8cd05b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -86.684
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441416300842149675, guid: bc087c2bee22e7a468537a54d8cd05b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -2.988
+      objectReference: {fileID: 0}
     - target: {fileID: 5922775913579982343, guid: bc087c2bee22e7a468537a54d8cd05b7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1399,6 +1439,34 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 021b974a53f8a484bbdafb35e5fb08bc, type: 2}
+    - target: {fileID: 1365886763927078317, guid: 9cdcf47a17094c44fa525c2f28024c1d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.48742065
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365886763927078317, guid: 9cdcf47a17094c44fa525c2f28024c1d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.52122164
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365886763927078317, guid: 9cdcf47a17094c44fa525c2f28024c1d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.47848433
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365886763927078317, guid: 9cdcf47a17094c44fa525c2f28024c1d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5116658
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365886763927078317, guid: 9cdcf47a17094c44fa525c2f28024c1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -15.416
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365886763927078317, guid: 9cdcf47a17094c44fa525c2f28024c1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -86.018
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365886763927078317, guid: 9cdcf47a17094c44fa525c2f28024c1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 105.451
+      objectReference: {fileID: 0}
     - target: {fileID: 1721569282258354930, guid: 9cdcf47a17094c44fa525c2f28024c1d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1633,13 +1701,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ab96437858e4c4589b34bdf0b0f9a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runScript: 0
+  runScript: 1
   peopleFolder: {fileID: 1174820386}
   stimuliFolder: {fileID: 447767285}
   distancesFileName: distances
   actionsFileName: actions
   instructionsFileName: instructions
   gostatsFileName: gostats
+  goReadActions: 0
   readAction: 0
 --- !u!114 &1309277844
 MonoBehaviour:

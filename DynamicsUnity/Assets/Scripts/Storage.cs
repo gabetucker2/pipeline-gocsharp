@@ -21,7 +21,7 @@ public class Storage : MonoBehaviour {
     
     private string csvDirectory;
 
-    private void Start() {
+    private void Awake() {
         csvDirectory = Path.Combine(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName, "Translator");
     }
 

@@ -11,8 +11,8 @@ public class Outputs : MonoBehaviour {
 
         // initialize actions as empty so that Go doesn't think it's arrived preemptively
         File.WriteAllText(storage.GetCSVPath(storage.actionsFileName), "");
-        File.WriteAllText(storage.GetCSVPath(storage.instructions), "");
-        File.WriteAllText(storage.GetCSVPath(storage.distances), "");
+        File.WriteAllText(storage.GetCSVPath(storage.instructionsFileName), "");
+        File.WriteAllText(storage.GetCSVPath(storage.distancesFileName), "");
     }
 
     // make changes to csv string
@@ -63,19 +63,21 @@ public class Outputs : MonoBehaviour {
                 storage.actions.Clear();
                 File.WriteAllText(storage.GetCSVPath(storage.actionsFileName), csv);
             } else {
-                // print("Updating actions");
-                foreach(var action in storage.actions) {
-                    Transform person = storage.peopleFolder.Find(action.person.name);
-                    csv += person.name + ",";
+                // Updating actions so go knows when the agents arrive at their destinations
+                if (storage.actions.Count > 0) {
+                    foreach(var action in storage.actions) {
+                        Transform person = storage.peopleFolder.Find(action.person.name);
+                        csv += person.name + ",";
+                    }
+                    csv = csv.Substring(0, csv.Length-1); // remove the final extraneous comma
+                    csv += System.Environment.NewLine; // new line
+                    // * rows
+                    foreach(var action in storage.actions) {
+                        csv += action.action + ",";
+                    }
+                    csv = csv.Substring(0, csv.Length-1); // remove the final extraneous comma
+                    File.WriteAllText(storage.GetCSVPath(storage.actionsFileName), csv);
                 }
-                csv = csv.Substring(0, csv.Length-1); // remove the final extraneous comma
-                csv += System.Environment.NewLine; // new line
-                // * rows
-                foreach(var action in storage.actions) {
-                    csv += action.action + ",";
-                }
-                csv = csv.Substring(0, csv.Length-1); // remove the final extraneous comma
-                File.WriteAllText(storage.GetCSVPath(storage.actionsFileName), csv);
             }
 
         }

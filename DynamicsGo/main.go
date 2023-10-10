@@ -63,7 +63,7 @@ func startRoutine() {
      peopleStack := distancesStack.Get(FIND_First).Val.(*Stack).Clone().Remove(FIND_First)
      stimuliStack := distancesStack.Clone().Transpose().Get(FIND_First).Val.(*Stack).Clone().Remove(FIND_First)
      
-     // * WRITE ONE-HOT
+     // * WRITE INITIAL
      
      if firstRun {
 						
@@ -90,7 +90,7 @@ func startRoutine() {
 		CSVToStackMatrix(gostatsFile).Update(REPLACE_Val, "True", FIND_Key, "readActionVal").ToCSV(gostatsFile)
       fmt.Println("SENT ACTIONS SIGNAL IN GOSTATS")
      }
-      // TODO: optimize this conditional for performance
+      // // TODO: optimize this conditional for performance
       // gostatsStack := CSVToStackMatrix(gostatsFile)
       // if gostatsStack.Get(FIND_Key, "readActionVal").Val == "True" {
       // 	gostatsStack.Update(REPLACE_Val, "False", FIND_Key, "readActionVal").ToCSV(gostatsFile)
@@ -101,7 +101,7 @@ func startRoutine() {
       firstRun = false
       
       } else {
-       fmt.Println("INVALID ATTEMPT TO ACCESS SHARED FILE")
+       fmt.Println("INVALID ATTEMPT TO ACCESS SHARED FILE, OR YOU HAVE NOT YET RUN UNITY TO INITIALIZE distances.csv")
       }
       
    }
